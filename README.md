@@ -112,10 +112,6 @@ This project is a full-stack web application built using the MERN stack: **Mongo
 4. **dotenv**:
    - Used to load environment variables from a `.env` file, ensuring sensitive data like API keys, session secrets, and database URIs are not hardcoded in the codebase.
 
-### Best Practices:
-- Always keep your `.env` file out of version control (use `.gitignore`).
-- Rotate your session secret regularly for enhanced security.
-
 ---
 
 ## API Documentation
