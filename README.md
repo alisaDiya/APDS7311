@@ -163,19 +163,6 @@ curl -X POST https://your-api-url.com/api/login \
 - **dotenv**: For environment variable management.
 - **express-session**: For secure session management.
 - **ExpressBrute**: For preventing brute-force attacks.
-
----
-
-## Contributing
-
-We welcome contributions from the community! If you'd like to contribute to this project:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Submit a pull request with a detailed description of your changes.
-
-Please make sure to follow the project's coding standards and include relevant tests when submitting changes.
-
 ---
 
 ## License
