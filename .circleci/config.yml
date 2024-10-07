@@ -18,7 +18,7 @@ jobs:
     steps:
       - run:
           name: Install findutils
-          command: apt-get update && apt-get install -y findutils
+          command: apk add --no-cache findutils
       - run:
           name: List directory contents
           command: find .
