@@ -1,0 +1,89 @@
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+
+  
+
+  .form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"] {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+  
+ 
+  .form-container label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+ 
+  .input-container {
+    margin-bottom: 16px;
+  }
+  
+  
+  .form-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .error-messages {
+    background-color: #ffdddd;
+    border: 1px solid red;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .error-messages ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .error-messages li {
+    color: red;
+  }
+  
+  
+  @media (max-width: 600px) {
+    .form-container {
+      padding: 15px;
+    }
+  }
+  
