@@ -13,15 +13,24 @@ jobs:
   sonarqube:
     working_directory: ~/build
     docker:
-      - image: sonarsource/sonar-scanner-cli
+      - image: alpine:latest  # Using an Alpine image that supports apk
     resource_class: small
     steps:
       - run:
+          name: Install unzip
+          command: apk add --no-cache unzip  # Install unzip utility
+      - run:
           name: Install findutils
-          command: apk add --no-cache findutils
+          command: apk add --no-cache findutils  # Install find utility
+      - run:
+          name: Download and Install Sonar Scanner
+          command: |
+            wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+            unzip sonar-scanner-cli-4.6.2.2472-linux.zip
+            export PATH="$PATH:$(pwd)/sonar-scanner-4.6.2.2472-linux/bin"
       - run:
           name: List directory contents
-          command: find .
+          command: find .  # List files in the current directory
       - attach_workspace:
           at: ~/workspace
       - run: |
