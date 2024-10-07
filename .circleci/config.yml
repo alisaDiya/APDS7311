@@ -1,6 +1,5 @@
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
 jobs:
   say-hello:
     docker:
@@ -17,7 +16,12 @@ jobs:
       - image: sonarsource/sonar-scanner-cli
     resource_class: small
     steps:
-      - run: find .
+      - run:
+          name: Install findutils
+          command: apt-get update && apt-get install -y findutils
+      - run:
+          name: List directory contents
+          command: find .
       - attach_workspace:
           at: ~/workspace
       - run: |
@@ -33,7 +37,6 @@ jobs:
             -Dsonar.branch.name="$SONAR_BRANCH" \
             -Dsonar.sources="."
 
-# Orchestrate jobs using workflows
 workflows:
   say-hello-workflow:
     jobs:
