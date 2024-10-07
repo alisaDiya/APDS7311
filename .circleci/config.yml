@@ -21,7 +21,7 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
-          
+jobs:         
 sonarqube:
   working_directory: ~/build
   docker:
