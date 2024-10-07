@@ -21,6 +21,28 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+          
+sonarqube:
+  working_directory: ~/build
+  docker:
+    - image: sonarsource/sonar-scanner-cli
+  resource_class: small
+  steps:
+    - run: find .
+    - attach_workspace:
+        at: ~/workspace
+    - run: |
+        SONAR_BRANCH="${CIRCLE_BRANCH:-master}"
+        echo "Sonar branch value is: $SONAR_BRANCH"
+        echo "Sonar org value is: $SONAR_ORG"
+        sonar-scanner \
+          -Dsonar.projectKey="$SONAR_PROJECT_KEY" \
+          -Dsonar.organization="$SONAR_ORG" \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.exclusions="**/android/**,**/ios/**" \
+          -Dsonar.login="$SONAR_TOKEN" \
+          -Dsonar.branch.name="$SONAR_BRANCH" \
+          -Dsonar.sources="."
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
@@ -29,3 +51,4 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - say-hello
+      - sonarqube
