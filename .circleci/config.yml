@@ -1,18 +1,20 @@
 version: 2.1
 
 jobs:
+  # Say Hello Job
   say-hello:
     docker:
-      - image: cimg/base:current
+      - image: cimg/base:current  # Use the CircleCI base image
     steps:
       - checkout
       - run:
-          name: "Say hello"
+          name: "Say Hello"
           command: "echo Hello, World!"
 
+  # SonarQube Analysis Job
   sonar_analysis:
     docker:
-      - image: cimg/base:current
+      - image: cimg/openjdk:17.0  # Use a Docker image with Java 17
     steps:
       - checkout
       - run:
@@ -34,7 +36,8 @@ jobs:
               -Dsonar.login=$SONAR_TOKEN
 
 workflows:
-  say-hello-workflow:
+  # Define the workflow
+  main-workflow:
     jobs:
-      - say-hello
-      - sonar_analysis
+      - say-hello  # Run the "Hello, World!" job first
+      - sonar_analysis  # Then run the SonarQube analysis job
