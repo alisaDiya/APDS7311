@@ -21,12 +21,13 @@ jobs:
             wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
             unzip sonar-scanner-cli-4.6.2.2472-linux.zip
             sudo chmod +x sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner
-            export PATH="$PATH:$(pwd)/sonar-scanner-4.6.2.2472-linux/bin"
+            export PATH=$(pwd)/sonar-scanner-4.6.2.2472-linux/bin:$PATH
             echo $PATH
+            ./sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner --version
       - run:
           name: Run SonarQube Scanner
           command: |
-            sonar-scanner \
+            ./sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner \
               -Dsonar.projectKey=your_project_key \
               -Dsonar.sources=. \
               -Dsonar.host.url=https://sonarcloud.io \
