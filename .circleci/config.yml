@@ -1,0 +1,43 @@
+version: 2.1
+
+jobs:
+  # Say Hello Job
+  say-hello:
+    docker:
+      - image: cimg/base:current  # Use the CircleCI base image
+    steps:
+      - checkout
+      - run:
+          name: "Say Hello"
+          command: "echo Hello, World!"
+
+  # SonarQube Analysis Job
+  sonar_analysis:
+    docker:
+      - image: cimg/openjdk:17.0  # Use a Docker image with Java 17
+    steps:
+      - checkout
+      - run:
+          name: Install SonarQube Scanner
+          command: |
+            wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+            unzip sonar-scanner-cli-4.6.2.2472-linux.zip
+            sudo chmod +x sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner
+            export PATH=$(pwd)/sonar-scanner-4.6.2.2472-linux/bin:$PATH
+            echo $PATH
+            ./sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner --version
+      - run:
+          name: Run SonarQube Scanner
+          command: |
+            ./sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner \
+              -Dsonar.projectKey=your_project_key \
+              -Dsonar.sources=. \
+              -Dsonar.host.url=https://sonarcloud.io \
+              -Dsonar.login=$SONAR_TOKEN
+
+workflows:
+  # Define the workflow
+  main-workflow:
+    jobs:
+      - say-hello  # Run the "Hello, World!" job first
+      - sonar_analysis  # Then run the SonarQube analysis job
