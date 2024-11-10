@@ -1,13 +1,16 @@
+// components/Register.js
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './Register.css';
 
-const Register = () => {
+const Register = ({ setToken }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [idNumber, setIdNumber] = useState('');
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -19,8 +22,16 @@ const Register = () => {
         email,
         idNumber,
       });
+
       console.log('User registered:', response.data);
       alert('Registration successful!');
+
+      // Store the token and update authentication state
+      const { token } = response.data;
+      setToken(token);
+
+      // Redirect the user to the homepage or another page
+      navigate('/');
     } catch (error) {
       console.error('Error registering user:', error);
 
@@ -29,7 +40,7 @@ const Register = () => {
       if (error.response) {
         // Check for validation errors
         if (error.response.data.errors) {
-          const validationErrors = error.response.data.errors.map(err => err.msg).join('\n');
+          const validationErrors = error.response.data.errors.map((err) => err.message || err.msg).join('\n');
           errorMessage += `\n\nValidation Errors:\n${validationErrors}`;
         } else if (error.response.data.error) {
           errorMessage += `\n\n${error.response.data.error}`;
@@ -89,12 +100,3 @@ const Register = () => {
 };
 
 export default Register;
-
-
-
-
-
-
-
-
-

@@ -1,4 +1,3 @@
-
 .form-container {
     width: 100%;
     max-width: 400px;
@@ -64,10 +63,12 @@
   }
 
   .error-messages {
-    background-color: #ffdddd;
-    border: 1px solid red;
+    background-color: #f8d7da;
+    border: 1px solid #dc3545;
+    color: #721c24;
     padding: 10px;
     margin-bottom: 15px;
+    border-radius: 4px;
   }
   
   .error-messages ul {
@@ -85,5 +86,31 @@
     .form-container {
       padding: 15px;
     }
+  }
+  
+  .form-select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: white;
+  }
+
+  .form-select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  .success-message {
+    background-color: #d4edda;
+    border: 1px solid #28a745;
+    color: #155724;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
   }
   

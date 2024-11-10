@@ -12,6 +12,7 @@
     "crypto-browserify": "^3.12.0",
     "express-brute": "^1.0.1",
     "express-session": "^1.18.0",
+    "jwt-decode": "^4.0.0",
     "path-browserify": "^1.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -21,7 +22,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "cross-env HTTPS=true SSL_CRT_FILE=\"C:\\Users\\Ethan\\Desktop\\APDS VS SWIFT\\backend\\keys\\localhost.pem\" SSL_KEY_FILE=\"C:\\Users\\Ethan\\Desktop\\APDS VS SWIFT\\backend\\keys\\localhost-key.pem\" react-scripts start",
+    "start": "cross-env HTTPS=true SSL_CRT_FILE=\"C:\\Users\\Jordan\\Desktop\\github\\APDS7311Fix\\APDS VS SWIFT\\backend\\keys\\localhost.pem\" SSL_KEY_FILE=\"C:\\Users\\Jordan\\Desktop\\github\\APDS7311Fix\\APDS VS SWIFT\\backend\\keys\\localhost-key.pem\" react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

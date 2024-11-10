@@ -7,8 +7,10 @@ const session = require('express-session');
 const ExpressBrute = require('express-brute');
 require('dotenv').config();
 const mongoose = require('mongoose');
+const paymentRoutes = require('./routes/payments');
 
 const userRoutes = require('./routes/users');
+const path = require('path');
 
 const app = express();
 const mongoURI = process.env.MONGODB_URI;
@@ -16,8 +18,8 @@ const port = process.env.PORT || 3000;
 
 //SSL Options
 const httpsOptions = {
-  key: fs.readFileSync('C:/Users/Ethan/Desktop/APDS VS SWIFT/backend/keys/localhost-key.pem'),
-  cert: fs.readFileSync('C:/Users/Ethan/Desktop/APDS VS SWIFT/backend/keys/localhost.pem')
+  key: fs.readFileSync(path.resolve(__dirname, 'keys/localhost-key.pem')),
+  cert: fs.readFileSync(path.resolve(__dirname, 'keys/localhost.pem'))
 };
 
 //Middleware
@@ -51,6 +53,7 @@ app.use('/api/users/login', bruteforce.prevent);
 
 //API Routes
 app.use('/api/users', userRoutes);
+app.use('/api/payments', paymentRoutes);
 
 //MongoDB Connection
 mongoose

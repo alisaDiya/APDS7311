@@ -1,33 +1,44 @@
-
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';  // Updated import
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Register from './components/Register';
 import Login from './components/Login';
-import Posts from './components/Posts';
+import Payment from './components/Payment';
+import HomePage from './components/HomePage';
+import AdminRegister from './components/AdminRegister';
 import './App.css';
 
 const App = () => {
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
+
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem('token', token);
+    } else {
+      localStorage.removeItem('token');
+    }
+  }, [token]);
 
   return (
     <Router>
       <div className="App">
-        <NavBar />
-        <header className="App-header">
-          <Routes>  {/* Updated Switch to Routes */}
-            <Route path="/" element={<h1>Welcome to the APDS7311 Application</h1>} />
-            <Route path="/" element={<h2>Ethan Robinson, Jordan Betts, Jared Herbst, Alisa , Tk Myende</h2>} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login setToken={setToken} />} />
-            <Route path="/posts" element={token ? <Posts token={token} /> : <p>Please log in to view posts</p>} />
-          </Routes>
-        </header>
+        <NavBar token={token} setToken={setToken} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/register" element={<Register setToken={setToken} />} />
+          <Route path="/login" element={<Login setToken={setToken} />} />
+          <Route
+            path="/payments"
+            element={token ? <Payment token={token} /> : <p>Please log in to view payments</p>}
+          />
+          <Route
+            path="/admin/register"
+            element={token ? <AdminRegister token={token} /> : <p>Please log in to access this page</p>}
+          />
+        </Routes>
       </div>
     </Router>
   );
 };
 
 export default App;
-
-

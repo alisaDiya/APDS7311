@@ -14,6 +14,7 @@
     "express-brute": "^1.0.1",
     "express-session": "^1.18.0",
     "express-validator": "^7.2.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.0"
   },
   "devDependencies": {
