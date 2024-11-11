@@ -4,7 +4,7 @@ jobs:
   # Say Hello Job
   say-hello:
     docker:
-      - image: cimg/base:current  # Use the CircleCI base image
+      - image: cimg/base:current
     steps:
       - checkout
       - run:
@@ -14,7 +14,7 @@ jobs:
   # SonarQube Analysis Job
   sonar_analysis:
     docker:
-      - image: cimg/openjdk:17.0  # Use a Docker image with Java 17
+      - image: cimg/openjdk:17.0  # Use Docker image with Java 17
     steps:
       - checkout
       - run:
@@ -41,4 +41,4 @@ workflows:
       - say-hello
       - sonar_analysis:
           requires:
-            - say-hello  # Ensure this job runs after "say-hello" job
+            - say-hello
