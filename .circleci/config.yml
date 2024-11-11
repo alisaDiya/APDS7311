@@ -22,7 +22,6 @@ jobs:
           command: |
             wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
             unzip sonar-scanner-cli-4.6.2.2472-linux.zip
-            sudo chmod +x sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner
             export PATH=$(pwd)/sonar-scanner-4.6.2.2472-linux/bin:$PATH
             echo $PATH
             ./sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner --version
@@ -36,8 +35,10 @@ jobs:
               -Dsonar.login=$SONAR_TOKEN
 
 workflows:
-  # Define the workflow
+  version: 2
   main-workflow:
     jobs:
-      - say-hello  # Run the "Hello, World!" job first
-      - sonar_analysis  # Then run the SonarQube analysis job
+      - say-hello
+      - sonar_analysis:
+          requires:
+            - say-hello  # Ensure this job runs after "say-hello" job
