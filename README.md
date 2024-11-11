@@ -1,4 +1,4 @@
-# APDS7311 Part 2
+# APDS7311 Part 3
 
 (ST10037089 - Alisa Diya Thool) <br>
 (ST10122569 - Mthokozisi Myende) <br>
@@ -6,7 +6,7 @@
 (ST10109485 - Jared Herbst) <br>
 (ST10036997 - Jordan Betts) <br>
 
-Demo Video :https://youtu.be/cimBBcdnmsw
+Demo Video : TBA
 
 ## Project Overview
 
